@@ -1,155 +1,92 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="pt-BR">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>BTX Agenda • Bloco Premium</title>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>BTX Agenda • 3 Quadros</title>
 
 <style>
 :root{
-  --borda:#111827;
-  --cinza:#6b7280;
-  --fundo:#f3f4f6;
-  --papel:#f9fafb;
-  --texto:#0b1220;
+  --ink:#111827;
+  --muted:#6b7280;
+  --bg:#eef2f7;
+  --paper:#f9fafb;
   --card:#ffffff;
+  --line:#d1d5db;
 }
 
-*{ box-sizing:border-box; font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; }
+*{ box-sizing:border-box; font-family: system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif; }
+body{ margin:0; background:var(--bg); color:var(--ink); }
 
-body{
-  margin:0;
-  background:var(--fundo);
-  color:var(--texto);
-}
-
-.app{
+.wrap{
   max-width:1100px;
   margin:0 auto;
   padding:14px;
   display:grid;
-  gap:12px;
   grid-template-columns: 320px 1fr;
+  gap:12px;
 }
+@media (max-width: 860px){ .wrap{ grid-template-columns:1fr; } }
 
-@media (max-width: 860px){
-  .app{ grid-template-columns: 1fr; }
-}
-
-/* ===== SIDEBAR ===== */
-.sidebar{
+aside{
   background:var(--card);
-  border:1.5px solid #d1d5db;
+  border:1.5px solid var(--line);
   border-radius:14px;
   padding:12px;
-  box-shadow:0 10px 30px rgba(0,0,0,.06);
+  box-shadow:0 10px 28px rgba(0,0,0,.06);
 }
-
 .brand{
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-  gap:10px;
-  padding:6px 4px 10px 4px;
-  border-bottom:1px solid #e5e7eb;
+  display:flex; align-items:center; justify-content:space-between; gap:10px;
+  border-bottom:1px solid #e5e7eb; padding:6px 4px 10px;
 }
-.brand h2{
-  margin:0;
-  font-size:15px;
-  letter-spacing:.6px;
-}
-.badge{
-  font-size:11px;
-  padding:6px 8px;
-  border:1px solid #d1d5db;
-  border-radius:999px;
-  color:var(--cinza);
-}
+.brand h2{ margin:0; font-size:15px; letter-spacing:.6px; }
+.badge{ font-size:11px; padding:6px 8px; border:1px solid var(--line); border-radius:999px; color:var(--muted); }
 
-.sideBlock{ margin-top:12px; }
-
-label{
-  font-size:12px;
-  font-weight:700;
-  display:block;
-  margin-bottom:6px;
-}
-
+.block{ margin-top:12px; }
+label{ display:block; margin-bottom:6px; font-size:12px; font-weight:800; }
 input, textarea, button{
   width:100%;
+  border:1px solid var(--line);
   border-radius:10px;
-  border:1px solid #d1d5db;
   font-size:14px;
 }
-
-input, textarea{
-  padding:10px;
-  background:white;
-}
-
+input, textarea{ padding:10px; background:#fff; }
 textarea{ resize:vertical; min-height:110px; }
 
-.btnRow{
-  display:grid;
-  grid-template-columns: 1fr 1fr;
-  gap:8px;
-  margin-top:10px;
-}
-
+.row2{ display:grid; grid-template-columns:1fr 1fr; gap:8px; margin-top:10px; }
 button{
-  padding:10px 12px;
-  cursor:pointer;
-  background:white;
-  font-weight:700;
+  padding:10px 12px; cursor:pointer; background:#fff; font-weight:800;
 }
 button:hover{ filter:brightness(.98); }
-.primary{
-  background:#111827;
-  color:white;
-  border-color:#111827;
-}
-.danger{
-  border-color:#ef4444;
-  color:#ef4444;
-}
-.small{
-  font-size:12px;
-  padding:9px 10px;
-}
+.primary{ background:#111827; color:#fff; border-color:#111827; }
+.danger{ color:#ef4444; border-color:#ef4444; }
+.small{ font-size:12px; padding:9px 10px; }
 
-/* ===== LISTA DE DIAS ===== */
 .list{
   margin-top:10px;
   border-top:1px dashed #e5e7eb;
   padding-top:10px;
-  max-height:320px;
+  max-height:340px;
   overflow:auto;
 }
-
-.dayItem{
+.item{
+  background:#fff;
   border:1px solid #e5e7eb;
   border-radius:12px;
   padding:10px;
-  margin-bottom:8px;
-  background:#fff;
   display:flex;
-  justify-content:space-between;
   align-items:flex-start;
+  justify-content:space-between;
   gap:10px;
+  margin-bottom:8px;
 }
-.dayItem strong{ font-size:13px; display:block; }
-.dayItem span{ font-size:12px; color:var(--cinza); }
-.dayItem button{
-  width:auto;
-  padding:8px 10px;
-  font-size:12px;
-  border-radius:10px;
-}
+.item strong{ font-size:13px; display:block; }
+.item span{ font-size:12px; color:var(--muted); }
+.item button{ width:auto; padding:8px 10px; font-size:12px; border-radius:10px; }
 
-/* ===== EDITOR ===== */
-.editor{
-  background:var(--papel);
-  border:2px solid var(--borda);
+main{
+  background:var(--paper);
+  border:2px solid var(--ink);
   border-radius:16px;
   padding:18px;
   box-shadow:0 10px 28px rgba(0,0,0,.08);
@@ -157,491 +94,486 @@ button:hover{ filter:brightness(.98); }
 
 .header{
   text-align:center;
+  border-bottom:1px solid var(--ink);
   padding-bottom:12px;
-  border-bottom:1px solid var(--borda);
   margin-bottom:14px;
 }
-.header h1{
-  margin:0;
-  font-size:18px;
-  letter-spacing:1px;
-}
-.header .meta{
-  margin-top:6px;
-  font-size:13px;
-  color:var(--cinza);
-}
+.header h1{ margin:0; font-size:18px; letter-spacing:1px; }
+.header .meta{ margin-top:6px; font-size:13px; color:var(--muted); }
 
 .grid2{
   display:grid;
   grid-template-columns: 1fr 1fr;
   gap:12px;
 }
-@media (max-width: 860px){
-  .grid2{ grid-template-columns: 1fr; }
-}
+@media (max-width: 860px){ .grid2{ grid-template-columns:1fr; } }
 
-.field{ margin-bottom:12px; }
-.field label{ margin-bottom:6px; }
-.field input, .field textarea{ border-radius:12px; }
+.card{
+  background:#fff;
+  border:1.5px solid var(--line);
+  border-radius:14px;
+  padding:12px;
+}
+.card h3{
+  margin:0 0 8px 0;
+  font-size:13px;
+  letter-spacing:.6px;
+}
+.editorField{ width:100%; min-height:120px; }
+.bigTitle{ min-height:auto; }
 
 .attach{
-  margin-top:8px;
-  padding-top:10px;
-  border-top:1px dashed #d1d5db;
+  margin-top:12px;
+  border-top:1px dashed var(--line);
+  padding-top:12px;
 }
 .preview{
   display:flex;
-  gap:10px;
   flex-wrap:wrap;
+  gap:10px;
   margin-top:10px;
 }
-.preview .imgBox{
-  width:130px;
-  border:1px solid #d1d5db;
+.imgBox{
+  width:150px;
+  background:#fff;
+  border:1px solid var(--line);
   border-radius:12px;
   overflow:hidden;
-  background:white;
 }
-.preview img{
-  width:100%;
-  height:120px;
-  object-fit:cover;
-  display:block;
-}
-.preview .imgActions{
-  padding:8px;
-  display:flex;
-  gap:6px;
-}
-.preview .imgActions button{
-  width:auto;
-  padding:7px 8px;
-  font-size:12px;
-  border-radius:10px;
-}
+.imgBox img{ width:100%; height:130px; object-fit:cover; display:block; }
+.imgActions{ padding:8px; display:flex; gap:6px; }
+.imgActions button{ width:auto; padding:7px 8px; font-size:12px; border-radius:10px; }
 
 .footer{
   margin-top:14px;
   padding-top:10px;
-  border-top:1px solid var(--borda);
-  color:var(--cinza);
-  font-size:12px;
+  border-top:1px solid var(--ink);
   text-align:center;
+  font-size:12px;
+  color:var(--muted);
 }
 
-/* ===== IMPRESSÃO ===== */
+/* ====== PRINT SAFE ======
+   - NÃO imprime textarea/input (porque alguns browsers "zeram" no print)
+   - imprime clones em DIV (printOnly)
+   - moldura fixa topo/rodapé pra ficar elegante e não “quebrar”
+*/
+.printOnly{ display:none; white-space:pre-wrap; word-break:break-word; line-height:1.35; }
+.screenOnly{ display:block; }
+
+.printFrameTop, .printFrameBottom{
+  display:none;
+}
+
+@page{
+  margin: 14mm;
+}
+
 @media print{
-  body{ background:white; }
-  .app{ display:block; padding:0; }
-  .sidebar{ display:none !important; }
-  .editor{
+  body{ background:#fff; }
+  .wrap{ display:block; padding:0; }
+  aside{ display:none !important; }
+  main{
     box-shadow:none;
     border-radius:0;
-    max-width:100%;
-    min-height:100vh;
+    border: none; /* moldura vai ser as linhas fixas */
+    padding: 0;
+    background:#fff;
   }
-  input, textarea{
-    border:none !important;
-    padding:0 !important;
-    background:transparent !important;
+
+  /* Moldura elegante no topo/rodapé (não quebra) */
+  .printFrameTop, .printFrameBottom{
+    display:block;
+    position:fixed;
+    left:0; right:0;
+    height:12mm;
+    border-top:2px solid var(--ink);
+    border-bottom:2px solid var(--ink);
   }
-  .attach input, .preview .imgActions, .btnRow, .footerHint { display:none !important; }
+  .printFrameTop{ top:0; }
+  .printFrameBottom{ bottom:0; }
+
+  /* espaço do conteúdo pra não bater nas linhas */
+  .printContent{
+    margin-top: 14mm;
+    margin-bottom: 14mm;
+  }
+
+  .screenOnly{ display:none !important; }
+  .printOnly{ display:block !important; }
+
+  /* imagens no print: sem botões */
+  .imgActions{ display:none !important; }
+
+  /* evita cortes feios */
+  .card{ break-inside: avoid; page-break-inside: avoid; }
+  .imgBox{ break-inside: avoid; page-break-inside: avoid; }
+
+  /* Cabeçalho mais “papel” */
+  .header{ border-bottom:1px solid var(--ink); padding-bottom:10px; margin-bottom:12px; }
 }
 </style>
 </head>
 
 <body>
-<div class="app">
+<div class="wrap">
 
-  <!-- SIDEBAR -->
-  <aside class="sidebar">
+  <aside>
     <div class="brand">
       <h2>BTX Agenda</h2>
-      <div class="badge">offline • multi-dias</div>
+      <div class="badge" id="badge">offline • 3 quadros</div>
     </div>
 
-    <div class="sideBlock">
+    <div class="block">
       <label>Escolher dia</label>
-      <input id="datePicker" type="date" />
-      <div class="btnRow">
+      <input id="datePicker" type="date">
+      <div class="row2">
         <button class="primary" onclick="saveNow()">Salvar</button>
-        <button onclick="newDay()">Novo dia</button>
+        <button onclick="goToday()">Hoje</button>
       </div>
-      <div class="btnRow">
+      <div class="row2">
         <button class="small" onclick="printPDF()">Gerar PDF/Imprimir</button>
         <button class="small danger" onclick="deleteDay()">Apagar dia</button>
       </div>
     </div>
 
-    <div class="sideBlock">
+    <div class="block">
       <label>Backup</label>
-      <div class="btnRow">
+      <div class="row2">
         <button class="small" onclick="exportBackup()">Exportar</button>
         <button class="small" onclick="document.getElementById('importFile').click()">Importar</button>
       </div>
-      <input id="importFile" type="file" accept="application/json" style="display:none" onchange="importBackup(event)" />
+      <input id="importFile" type="file" accept="application/json" style="display:none" onchange="importBackup(event)">
     </div>
 
-    <div class="sideBlock">
+    <div class="block">
       <label>Dias salvos</label>
       <div class="list" id="daysList"></div>
     </div>
 
-    <div class="footerHint" style="margin-top:10px;color:var(--cinza);font-size:12px;">
-      Dica: o PDF sai pelo “Imprimir → Salvar como PDF”.
+    <div style="margin-top:10px;color:var(--muted);font-size:12px;">
+      Dica: PDF sai por “Imprimir → Salvar como PDF”.
     </div>
   </aside>
 
-  <!-- EDITOR -->
-  <main class="editor" id="printArea">
-    <div class="header">
-      <h1>AGENDA / BLOCO DE NOTAS</h1>
-      <div class="meta" id="humanDate">—</div>
-    </div>
+  <main>
+    <!-- Moldura do print -->
+    <div class="printFrameTop"></div>
+    <div class="printFrameBottom"></div>
 
-    <div class="grid2">
-      <div class="field">
-        <label>Paciente / Assunto</label>
-        <input id="title" placeholder="Ex.: Consulta João, Estudo Obstetrícia, Planejamento..." />
+    <div class="printContent">
+      <div class="header">
+        <h1>AGENDA / BLOCO DE NOTAS</h1>
+        <div class="meta" id="humanDate">—</div>
       </div>
-      <div class="field">
-        <label>Status do dia</label>
-        <input id="status" placeholder="Ex.: ok / retorno / pendente / urgência..." />
-      </div>
-    </div>
 
-    <div class="grid2">
-      <div class="field">
-        <label>Resumo / Evolução</label>
-        <textarea id="resumo" placeholder="Evolução clínica, pontos-chave, achados..."></textarea>
-      </div>
-      <div class="field">
-        <label>Conduta / Lembretes</label>
-        <textarea id="conduta" placeholder="Exames, medicações, retorno, tarefas, pendências..."></textarea>
-      </div>
-    </div>
+      <!-- QUADRO 1 -->
+      <div class="card">
+        <h3>ASSUNTO DO DIA</h3>
 
-    <div class="attach">
-      <label>Anexos (foto do dia, exame, registro)</label>
-      <input id="fileInput" type="file" accept="image/*" multiple />
-      <div class="preview" id="preview"></div>
-    </div>
+        <!-- edição (tela) -->
+        <input class="screenOnly bigTitle" id="assunto" placeholder="Ex.: Consulta Maria • Estudo Obstetrícia • Planejamento...">
 
-    <div class="footer">
-      Documento organizado • bordas elegantes • impressão limpa
+        <!-- impressão (PDF) -->
+        <div class="printOnly" id="p_assunto"></div>
+      </div>
+
+      <div style="height:12px"></div>
+
+      <div class="grid2">
+        <!-- QUADRO 2 -->
+        <div class="card">
+          <h3>RESUMO</h3>
+
+          <textarea class="screenOnly editorField" id="resumo" placeholder="Pontos-chave, evolução, achados..."></textarea>
+          <div class="printOnly" id="p_resumo"></div>
+        </div>
+
+        <!-- QUADRO 3 -->
+        <div class="card">
+          <h3>CONDUTA</h3>
+
+          <textarea class="screenOnly editorField" id="conduta" placeholder="Condutas, exames, retorno, lembretes..."></textarea>
+          <div class="printOnly" id="p_conduta"></div>
+        </div>
+      </div>
+
+      <div class="attach">
+        <label>Anexos (foto do dia)</label>
+        <input class="screenOnly" id="fileInput" type="file" accept="image/*" multiple>
+        <div class="preview" id="preview"></div>
+      </div>
+
+      <div class="footer">
+        Documento organizado • impressão segura • offline
+      </div>
     </div>
   </main>
 
 </div>
 
 <script>
-/* =========================
-   IndexedDB (para anexos)
-========================= */
-const DB_NAME = "btx_agenda_db";
-const DB_VER  = 1;
-const STORE   = "days";
-
-let db = null;
-let currentDateKey = null;
-let autosaveTimer = null;
+/* ===== IndexedDB para salvar dias + imagens ===== */
+const DB_NAME="btx_agenda_db_v2";
+const DB_VER=1;
+const STORE="days";
+let db=null;
+let currentDateKey=null;
+let currentImages=[];
+let autosaveTimer=null;
 
 function openDB(){
   return new Promise((resolve,reject)=>{
-    const req = indexedDB.open(DB_NAME, DB_VER);
-    req.onupgradeneeded = (e)=>{
-      const d = e.target.result;
+    const req=indexedDB.open(DB_NAME,DB_VER);
+    req.onupgradeneeded=e=>{
+      const d=e.target.result;
       if(!d.objectStoreNames.contains(STORE)){
-        d.createObjectStore(STORE, { keyPath: "date" });
+        d.createObjectStore(STORE,{keyPath:"date"});
       }
     };
-    req.onsuccess = ()=>{ db = req.result; resolve(db); };
-    req.onerror = ()=> reject(req.error);
+    req.onsuccess=()=>{ db=req.result; resolve(db); };
+    req.onerror=()=>reject(req.error);
   });
 }
-
-function tx(mode="readonly"){
-  return db.transaction(STORE, mode).objectStore(STORE);
-}
-
+function store(mode="readonly"){ return db.transaction(STORE,mode).objectStore(STORE); }
 function idbGet(date){
   return new Promise((resolve,reject)=>{
-    const r = tx("readonly").get(date);
-    r.onsuccess = ()=> resolve(r.result || null);
-    r.onerror = ()=> reject(r.error);
+    const r=store("readonly").get(date);
+    r.onsuccess=()=>resolve(r.result||null);
+    r.onerror=()=>reject(r.error);
   });
 }
-
 function idbPut(obj){
   return new Promise((resolve,reject)=>{
-    const r = tx("readwrite").put(obj);
-    r.onsuccess = ()=> resolve(true);
-    r.onerror = ()=> reject(r.error);
+    const r=store("readwrite").put(obj);
+    r.onsuccess=()=>resolve(true);
+    r.onerror=()=>reject(r.error);
   });
 }
-
-function idbDelete(date){
+function idbDel(date){
   return new Promise((resolve,reject)=>{
-    const r = tx("readwrite").delete(date);
-    r.onsuccess = ()=> resolve(true);
-    r.onerror = ()=> reject(r.error);
+    const r=store("readwrite").delete(date);
+    r.onsuccess=()=>resolve(true);
+    r.onerror=()=>reject(r.error);
   });
 }
-
-function idbGetAll(){
+function idbAll(){
   return new Promise((resolve,reject)=>{
-    const r = tx("readonly").getAll();
-    r.onsuccess = ()=> resolve(r.result || []);
-    r.onerror = ()=> reject(r.error);
+    const r=store("readonly").getAll();
+    r.onsuccess=()=>resolve(r.result||[]);
+    r.onerror=()=>reject(r.error);
   });
 }
 
-/* =========================
-   Util
-========================= */
-function fmtHuman(dateStr){
-  const [y,m,d] = dateStr.split("-").map(Number);
-  const dt = new Date(y, m-1, d);
-  return dt.toLocaleDateString("pt-BR", { weekday:"long", day:"2-digit", month:"long", year:"numeric" });
-}
-
+/* ===== util ===== */
 function todayKey(){
-  const dt = new Date();
-  const y = dt.getFullYear();
-  const m = String(dt.getMonth()+1).padStart(2,"0");
-  const d = String(dt.getDate()).padStart(2,"0");
+  const dt=new Date();
+  const y=dt.getFullYear();
+  const m=String(dt.getMonth()+1).padStart(2,"0");
+  const d=String(dt.getDate()).padStart(2,"0");
   return `${y}-${m}-${d}`;
 }
-
+function fmtHuman(dateStr){
+  const [y,m,d]=dateStr.split("-").map(Number);
+  const dt=new Date(y,m-1,d);
+  return dt.toLocaleDateString("pt-BR",{weekday:"long",day:"2-digit",month:"long",year:"numeric"});
+}
+function flash(msg){
+  const b=document.getElementById("badge");
+  const old=b.textContent;
+  b.textContent=msg;
+  setTimeout(()=>b.textContent=old,900);
+}
 function readForm(){
   return {
-    title: document.getElementById("title").value.trim(),
-    status: document.getElementById("status").value.trim(),
+    assunto: document.getElementById("assunto").value.trim(),
     resumo: document.getElementById("resumo").value.trim(),
     conduta: document.getElementById("conduta").value.trim()
   };
 }
-
 function setForm(data){
-  document.getElementById("title").value = data?.title || "";
-  document.getElementById("status").value = data?.status || "";
-  document.getElementById("resumo").value = data?.resumo || "";
+  document.getElementById("assunto").value = data?.assunto || "";
+  document.getElementById("resumo").value  = data?.resumo  || "";
   document.getElementById("conduta").value = data?.conduta || "";
 }
-
-function renderPreview(images=[]){
-  const box = document.getElementById("preview");
-  box.innerHTML = "";
-  images.forEach((src, idx)=>{
-    const wrap = document.createElement("div");
-    wrap.className = "imgBox";
-    wrap.innerHTML = `
-      <img src="${src}" alt="anexo"/>
-      <div class="imgActions">
+function renderPreview(){
+  const box=document.getElementById("preview");
+  box.innerHTML="";
+  currentImages.forEach((src,idx)=>{
+    const el=document.createElement("div");
+    el.className="imgBox";
+    el.innerHTML=`
+      <img src="${src}" alt="anexo">
+      <div class="imgActions screenOnly">
         <button onclick="removeImage(${idx})">Remover</button>
       </div>
     `;
-    box.appendChild(wrap);
+    box.appendChild(el);
   });
 }
+function scheduleAutosave(){
+  clearTimeout(autosaveTimer);
+  autosaveTimer=setTimeout(()=>saveNow(false),450);
+}
 
-/* =========================
-   Estado do dia
-========================= */
-let currentImages = [];
-
+/* ===== load / save ===== */
 async function loadDay(dateStr){
-  currentDateKey = dateStr;
-  document.getElementById("humanDate").innerText = fmtHuman(dateStr);
+  currentDateKey=dateStr;
+  document.getElementById("humanDate").textContent = fmtHuman(dateStr);
 
-  const saved = await idbGet(dateStr);
+  const saved=await idbGet(dateStr);
   if(saved){
     setForm(saved);
     currentImages = saved.images || [];
-    renderPreview(currentImages);
-  } else {
+  }else{
     setForm(null);
     currentImages = [];
-    renderPreview(currentImages);
   }
-  await refreshDaysList();
+  renderPreview();
+  await refreshList();
 }
-
-async function saveNow(showToast=true){
+async function saveNow(toast=true){
   if(!currentDateKey) return;
-  const data = readForm();
-  const obj = {
+  const data=readForm();
+  const obj={
     date: currentDateKey,
     ...data,
     images: currentImages,
     updatedAt: Date.now()
   };
   await idbPut(obj);
-  await refreshDaysList();
-  if(showToast) quickFlash("Salvo ✅");
+  await refreshList();
+  if(toast) flash("Salvo ✅");
 }
 
-function scheduleAutosave(){
-  clearTimeout(autosaveTimer);
-  autosaveTimer = setTimeout(()=> saveNow(false), 450);
-}
+/* ===== list ===== */
+async function refreshList(){
+  const all=await idbAll();
+  all.sort((a,b)=> (b.updatedAt||0)-(a.updatedAt||0));
+  const list=document.getElementById("daysList");
+  list.innerHTML="";
 
-function quickFlash(text){
-  const b = document.querySelector(".badge");
-  const old = b.innerText;
-  b.innerText = text;
-  setTimeout(()=> b.innerText = old, 900);
-}
-
-/* =========================
-   Lista de dias
-========================= */
-async function refreshDaysList(){
-  const all = await idbGetAll();
-  all.sort((a,b)=> (b.updatedAt||0) - (a.updatedAt||0));
-
-  const list = document.getElementById("daysList");
-  list.innerHTML = "";
-
-  if(all.length === 0){
-    list.innerHTML = `<div style="color:var(--cinza);font-size:12px;padding:10px;">Nenhum dia salvo ainda.</div>`;
+  if(all.length===0){
+    list.innerHTML=`<div style="color:var(--muted);font-size:12px;padding:10px;">Nenhum dia salvo ainda.</div>`;
     return;
   }
 
-  all.forEach(item=>{
-    const title = (item.title || "").slice(0,34);
-    const resumo = (item.resumo || "").replace(/\n/g," ").slice(0,38);
-    const el = document.createElement("div");
-    el.className = "dayItem";
-    el.innerHTML = `
+  all.forEach(it=>{
+    const el=document.createElement("div");
+    el.className="item";
+    const hint=(it.assunto || it.resumo || "Sem título").slice(0,42);
+    el.innerHTML=`
       <div>
-        <strong>${fmtHuman(item.date)}</strong>
-        <span>${title || resumo || "Sem título (mas salvo)"}</span>
+        <strong>${fmtHuman(it.date)}</strong>
+        <span>${hint}</span>
       </div>
-      <button onclick="jumpTo('${item.date}')">Abrir</button>
+      <button onclick="jumpTo('${it.date}')">Abrir</button>
     `;
     list.appendChild(el);
   });
 }
-
 function jumpTo(dateStr){
-  document.getElementById("datePicker").value = dateStr;
+  document.getElementById("datePicker").value=dateStr;
   loadDay(dateStr);
 }
 
-/* =========================
-   Anexos
-========================= */
+/* ===== anexos ===== */
 document.getElementById("fileInput").addEventListener("change", async (e)=>{
-  const files = Array.from(e.target.files || []);
-  for(const file of files){
-    const dataUrl = await fileToDataURL(file);
+  const files=Array.from(e.target.files||[]);
+  for(const f of files){
+    const dataUrl=await fileToDataURL(f);
     currentImages.push(dataUrl);
   }
-  renderPreview(currentImages);
+  renderPreview();
   scheduleAutosave();
-  e.target.value = "";
+  e.target.value="";
 });
-
 function fileToDataURL(file){
   return new Promise((resolve,reject)=>{
-    const r = new FileReader();
-    r.onload = ()=> resolve(r.result);
-    r.onerror = ()=> reject(r.error);
+    const r=new FileReader();
+    r.onload=()=>resolve(r.result);
+    r.onerror=()=>reject(r.error);
     r.readAsDataURL(file);
   });
 }
-
 function removeImage(idx){
   currentImages.splice(idx,1);
-  renderPreview(currentImages);
+  renderPreview();
   scheduleAutosave();
 }
 
-/* =========================
-   Ações
-========================= */
-function newDay(){
-  const t = todayKey();
-  document.getElementById("datePicker").value = t;
+/* ===== print safe (o segredo) ===== */
+function hydratePrintLayer(){
+  const {assunto,resumo,conduta}=readForm();
+  document.getElementById("p_assunto").textContent = assunto || "—";
+  document.getElementById("p_resumo").textContent  = resumo  || "—";
+  document.getElementById("p_conduta").textContent = conduta || "—";
+}
+function printPDF(){
+  hydratePrintLayer();
+  // garante salvar antes de imprimir, sem “sumir”
+  saveNow(false).then(()=>window.print());
+}
+window.addEventListener("beforeprint", hydratePrintLayer);
+
+/* ===== actions ===== */
+function goToday(){
+  const t=todayKey();
+  document.getElementById("datePicker").value=t;
   loadDay(t);
 }
-
 async function deleteDay(){
   if(!currentDateKey) return;
-  const ok = confirm("Apagar esse dia e todos os anexos? (sem volta)");
+  const ok=confirm("Apagar esse dia e todos os anexos? (sem volta)");
   if(!ok) return;
-  await idbDelete(currentDateKey);
-  newDay();
-  await refreshDaysList();
+  await idbDel(currentDateKey);
+  goToday();
+  await refreshList();
 }
 
-function printPDF(){
-  // Só chama a impressão (usuário salva como PDF)
-  window.print();
-}
-
-/* =========================
-   Backup JSON
-========================= */
+/* ===== backup ===== */
 async function exportBackup(){
-  const all = await idbGetAll();
-  const blob = new Blob([JSON.stringify({version:1, exportedAt: Date.now(), days: all}, null, 2)], {type:"application/json"});
-  const a = document.createElement("a");
-  a.href = URL.createObjectURL(blob);
-  a.download = `btx_agenda_backup_${todayKey()}.json`;
+  const all=await idbAll();
+  const blob=new Blob([JSON.stringify({version:2,exportedAt:Date.now(),days:all},null,2)],{type:"application/json"});
+  const a=document.createElement("a");
+  a.href=URL.createObjectURL(blob);
+  a.download=`btx_agenda_backup_${todayKey()}.json`;
   a.click();
   URL.revokeObjectURL(a.href);
 }
-
-async function importBackup(event){
-  const file = event.target.files?.[0];
+async function importBackup(ev){
+  const file=ev.target.files?.[0];
   if(!file) return;
-
   try{
-    const text = await file.text();
-    const json = JSON.parse(text);
-    const days = json.days || [];
-    for(const day of days){
-      if(day?.date){
-        await idbPut(day);
-      }
-    }
-    quickFlash("Importado ✅");
-    await refreshDaysList();
-
-    // abre o mais recente importado
-    const all = await idbGetAll();
-    all.sort((a,b)=> (b.updatedAt||0) - (a.updatedAt||0));
+    const txt=await file.text();
+    const json=JSON.parse(txt);
+    const days=json.days||[];
+    for(const d of days){ if(d?.date) await idbPut(d); }
+    flash("Importado ✅");
+    await refreshList();
+    const all=await idbAll();
+    all.sort((a,b)=> (b.updatedAt||0)-(a.updatedAt||0));
     if(all[0]) jumpTo(all[0].date);
-
-  }catch(err){
-    alert("Falha ao importar backup. Verifica se o arquivo é um JSON válido.");
+  }catch(e){
+    alert("Falha ao importar. Arquivo inválido.");
   }finally{
-    event.target.value = "";
+    ev.target.value="";
   }
 }
 
-/* =========================
-   Eventos (autosave)
-========================= */
-["title","status","resumo","conduta"].forEach(id=>{
+/* ===== autosave ===== */
+["assunto","resumo","conduta"].forEach(id=>{
   document.getElementById(id).addEventListener("input", scheduleAutosave);
 });
-
-document.getElementById("datePicker").addEventListener("change", (e)=>{
-  const v = e.target.value;
-  if(v) loadDay(v);
+document.getElementById("datePicker").addEventListener("change", e=>{
+  if(e.target.value) loadDay(e.target.value);
 });
 
-/* =========================
-   Inicialização
-========================= */
-(async function init(){
+/* ===== init ===== */
+(async function(){
   await openDB();
-  const t = todayKey();
-  document.getElementById("datePicker").value = t;
+  const t=todayKey();
+  document.getElementById("datePicker").value=t;
   await loadDay(t);
 })();
 </script>
